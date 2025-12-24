@@ -9,6 +9,7 @@ namespace OOP_HRSystem
     internal abstract class Employee:Person
     {
         public abstract decimal GetSalary();
+        public abstract IEnumerable<PayItem> GetPayItems();
         
     }
 }

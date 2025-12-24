@@ -10,6 +10,12 @@ namespace OOP_HRSystem
     {
         public decimal HourRate { get; set; }
         public decimal TotalWorkingHours { get; set; }
+
+        public override IEnumerable<PayItem> GetPayItems()
+        {
+            return new[] { new PayItem("Total Houres", GetSalary()) };
+        }
+
         public override decimal GetSalary()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
