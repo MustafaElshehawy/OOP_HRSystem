@@ -5,22 +5,35 @@
         static void Main(string[] args)
         {
             SalarriedEmployee salariedEmployee = new SalarriedEmployee();
+            salariedEmployee.SetName("Mostafa", "Monsour");
+            salariedEmployee.Email = "salaried@example.com";
             salariedEmployee.BasicSalary = 2000;
             salariedEmployee.Housing = 1000;
             salariedEmployee.Transpoetation = 500;
             Console.WriteLine($"Salary of Salaried employee (witout taxes) is {salariedEmployee.GetSalary():0.00}");
             Console.WriteLine($"Salary of Salaried employee (with 30% taxes) is {salariedEmployee.GetSalary(30):0.00}");
-            Console.WriteLine($"Salary of Salaried employee (with 30% taxes and 1500 bouns) is {salariedEmployee.GetSalary(30,1500):0.00}");
+            //Console.WriteLine($"Salary of Salaried employee (with 30% taxes and 1500 bouns) is {salariedEmployee.GetSalary(30,1500):0.00}");
             
             HourlyEmployee hourlyEmployee = new HourlyEmployee();
+            hourlyEmployee.SetName("Mostafa", "Monsour");
+            hourlyEmployee.Email = "salaried@example.com";
             hourlyEmployee.HourRate = 100;
             hourlyEmployee.TotalWorkingHours = 60;
             Console.WriteLine($"Hourly of Salaried employee is {hourlyEmployee.GetSalary():0.00}");
 
 
             InternEmployee internEmployee = new InternEmployee();
+            internEmployee.SetName("Mostafa", "Monsour");
+            internEmployee.Email = "salaried@example.com";
             Console.WriteLine($"Intern of Salaried employee is {internEmployee.GetSalary():0.00}");
 
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("________________________________________________");
+            var notifier = new Notifier("mail@example.com", 25, "noreply@example", "abc123");
+            var payslipGenerator = new PaySlipGenerator(notifier);
+            payslipGenerator.Generate(salariedEmployee);
+            payslipGenerator.Generate(hourlyEmployee);
+            payslipGenerator.Generate(internEmployee);
             Console.ReadKey();
 
 

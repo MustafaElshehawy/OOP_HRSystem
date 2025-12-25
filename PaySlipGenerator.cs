@@ -8,6 +8,13 @@ namespace OOP_HRSystem
 {
     internal class PaySlipGenerator
     {
+        private readonly INotifier _notifier;
+
+        public PaySlipGenerator(INotifier notifier)
+        {
+            _notifier = notifier;
+        }
+
         public void Generate(Employee employee)
         { 
             var payItems = employee.GetPayItems();
@@ -18,6 +25,7 @@ namespace OOP_HRSystem
             {
                 message.AppendLine($"{payItem.Name}\t\t{payItem.Value}");
             }
+            _notifier.Notify(employee.Email, "Payslip Generated ", message.ToString());
         }
     }
 }
